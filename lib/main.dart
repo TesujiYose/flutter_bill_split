@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './overview_screen.dart';
+import 'screens/overview_screen.dart';
 
 void main() {
   runApp(const MyApp());
