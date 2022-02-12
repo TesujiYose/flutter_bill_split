@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bill_split/screens/main_screen.dart';
 
 import 'screens/overview_screen.dart';
 
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: OverviewScreen(),
+      home: MainScreen(),
     );
   }
 }

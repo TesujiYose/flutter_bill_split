@@ -9,33 +9,22 @@ class OverviewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Login!'),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.add),
+    return Center(
+      child: ListView.builder(
+        itemBuilder: (ctx, i) => Container(
+          child: InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => BillScreen(DUMMY_BILLS[i]),
+                ),
+              );
+            },
+            child: BillTile(DUMMY_BILLS[i]),
           ),
-        ],
-      ),
-      body: Center(
-        child: ListView.builder(
-          itemBuilder: (ctx, i) => Container(
-            child: InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => BillScreen(DUMMY_BILLS[i]),
-                  ),
-                );
-              },
-              child: BillTile(DUMMY_BILLS[i]),
-            ),
-          ),
-          itemCount: DUMMY_BILLS.length,
         ),
+        itemCount: DUMMY_BILLS.length,
       ),
     );
   }
