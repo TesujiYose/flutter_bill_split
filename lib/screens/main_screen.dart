@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bill_split/in_dev/footer_tabs.dart';
 import 'package:flutter_bill_split/screens/guest_screen.dart';
 import 'package:flutter_bill_split/screens/host_screen.dart';
 import 'package:flutter_bill_split/screens/overview_screen.dart';
@@ -34,6 +35,16 @@ class _MainScreenState extends State<MainScreen> {
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Footer(),
+            ),
+          );
+        },
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
