@@ -9,7 +9,6 @@ class OverviewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
     return Center(
       child: ListView.builder(
         itemBuilder: (ctx, i) => Container(
@@ -23,15 +22,6 @@ class OverviewScreen extends StatelessWidget {
               );
             },
             child: BillTile(DUMMY_BILLS[i]),
-=======
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Login!'),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.add),
->>>>>>> 15a3a465992e3360edc8504cf5a4378b69f889a9
           ),
         ),
         itemCount: DUMMY_BILLS.length,
