@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bill_split/screens/main_screen.dart';
+import 'package:flutter_bill_split/screens/bill_history_screen.dart';
 
-import 'screens/overview_screen.dart';
+import 'screens/bill_history_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MainScreen(),
+      home: BillHisoryScreen(),
     );
   }
 }

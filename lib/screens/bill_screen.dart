@@ -32,6 +32,7 @@ class BillScreen extends StatelessWidget {
       ),
       body: Center(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('Date: ${mybill.createdTime.day}/${mybill.createdTime.month}'),
             Text('Members:'),
