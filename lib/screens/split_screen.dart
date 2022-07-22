@@ -23,6 +23,7 @@ class _SplitScreenState extends State<SplitScreen> {
     return Scaffold(
       appBar: AppBar(),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
@@ -44,8 +45,24 @@ class _SplitScreenState extends State<SplitScreen> {
               ),
             ],
           ),
-          ...listOfEntries,
+          Container(
+            color: Colors.blueGrey[50],
+            height: 500,
+            child: ListView(
+              children: [...listOfEntries],
+            ),
+          ),
 
+          //...listOfEntries,
+          Container(
+            width: double.infinity,
+            height: 55,
+            color: Color.fromARGB(247, 196, 190, 129),
+            child: TextButton(
+              onPressed: () {},
+              child: Text('Submit!'),
+            ),
+          ),
           // widget.mybill.entries
         ],
       ),
@@ -121,11 +138,12 @@ class _EntryRowState extends State<EntryRow> {
         SizedBox(width: 16),
         Text('${_currentEntry.price * _quality}'),
         TextButton(
-            onPressed: () {
-              listOfEntries.add(EntryRow(widget.mybill));
-              setState(() {});
-            },
-            child: Text('GO'))
+          onPressed: () {
+            listOfEntries.add(EntryRow(widget.mybill));
+            setState(() {});
+          },
+          child: Text('GO'),
+        ),
       ],
     );
   }
