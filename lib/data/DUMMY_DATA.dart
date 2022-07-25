@@ -1,3 +1,5 @@
+import 'package:flutter_bill_split/models/subbill.dart';
+
 import '../models/bill.dart';
 import '../models/entry.dart';
 import '../models/member.dart';
@@ -24,6 +26,8 @@ List<Entry> DUMMY_ENTRIES2 = [
   Entry('Kronenburg Blanc 0.5', 2, 55.0),
   Entry('Hashpar 0.5', 15, 38.0),
 ];
+
+List<SubBill> DUMMY_SUBBILLS = [];
 
 List<Bill> DUMMY_BILLS = [
   Bill(

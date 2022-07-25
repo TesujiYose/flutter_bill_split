@@ -17,20 +17,30 @@ class _BillHisoryScreenState extends State<BillHisoryScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Previous bill\'s'), actions: [
-        IconButton(onPressed: () {}, icon: Icon(Icons.qr_code)),
-        IconButton(
-            onPressed: () async {
-              await Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => BillCreateScreen(),
-                ),
-              );
-              setState(() {});
-            },
-            icon: Icon(Icons.add)),
-      ]),
+      appBar: AppBar(
+          title: Row(
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: Icon(Icons.settings),
+              ),
+              Text('Previous bill\'s'),
+            ],
+          ),
+          actions: [
+            IconButton(onPressed: () {}, icon: Icon(Icons.qr_code)),
+            IconButton(
+                onPressed: () async {
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => BillCreateScreen(),
+                    ),
+                  );
+                  setState(() {});
+                },
+                icon: Icon(Icons.add)),
+          ]),
       body: Center(
         child: ListView.builder(
           itemBuilder: (ctx, i) => Container(
@@ -49,19 +59,6 @@ class _BillHisoryScreenState extends State<BillHisoryScreen> {
           itemCount: DUMMY_BILLS.length,
         ),
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        setState(() {
-          DUMMY_BILLS.add(Bill(
-              title: 'ADDED NEW POG',
-              createdTime: DateTime.parse('2021-11-18 01:01:00.000'),
-              entries: DUMMY_ENTRIES1,
-              members: [
-                dummy_members[0],
-                dummy_members[1],
-                dummy_members[2],
-              ]));
-        });
-      }),
     );
   }
 }

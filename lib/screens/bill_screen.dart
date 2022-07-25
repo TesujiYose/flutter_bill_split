@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bill_split/data/DUMMY_DATA.dart';
 import 'package:flutter_bill_split/models/bill.dart';
 import 'package:flutter_bill_split/screens/split_screen.dart';
 import 'package:flutter_bill_split/widgets/entry_tile.dart';
@@ -34,20 +35,47 @@ class BillScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Date: ${mybill.createdTime.day}/${mybill.createdTime.month}'),
-            Text('Members:'),
-            ...mybill.members.map((e) => Text(e.name)).toList(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text('Title'),
-                Text('Quantity'),
-                Text('Price'),
-                Text('Sum'),
-              ],
+            Container(
+              color: Colors.blueGrey[50],
+              child: Column(
+                children: [
+                  Text(
+                      'Date: ${mybill.createdTime.day}/${mybill.createdTime.month}'),
+                  Text('Members:'),
+                  ...mybill.members.map((e) => Text(e.name)).toList(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Expanded(
+                        child: Text('Title'),
+                        flex: 3,
+                      ),
+                      Expanded(child: Text('Quantity')),
+                      Expanded(
+                        child: Text('Price'),
+                      ),
+                      Expanded(
+                        child: Text('Sum'),
+                      ),
+                    ],
+                  ),
+                  ...mybill.entries.map((e) => EntryTile(e)).toList(),
+                  Align(
+                    child: Text('Summury $summary'),
+                    alignment: Alignment.center,
+                  ),
+                  Container(
+                    color: Colors.blueGrey[100],
+                    child: Column(
+                      children: [
+                        for (var item in DUMMY_SUBBILLS)
+                          Text('${item.entries.last.title}')
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-            ...mybill.entries.map((e) => EntryTile(e)).toList(),
-            Text('Summury $summary')
           ],
         ),
       ),

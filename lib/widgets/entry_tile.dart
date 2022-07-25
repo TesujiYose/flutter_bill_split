@@ -12,10 +12,19 @@ class EntryTile extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Text(entry.title),
-          Text(entry.quantity.toString()),
-          Text(entry.price.toString()),
-          Text('${(entry.quantity * entry.price).toStringAsFixed(2)}'),
+          Expanded(
+            child: Text(entry.title),
+            flex: 3,
+          ),
+          Expanded(
+            child: Text(entry.quantity.toString()),
+          ),
+          Expanded(
+            child: Text(entry.price.toString()),
+          ),
+          Expanded(
+            child: Text('${(entry.quantity * entry.price).toStringAsFixed(2)}'),
+          ),
         ],
       ),
     );

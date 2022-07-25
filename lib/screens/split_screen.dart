@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bill_split/data/DUMMY_DATA.dart';
 import 'package:flutter_bill_split/models/bill.dart';
 import 'package:flutter_bill_split/models/entry.dart';
+import 'package:flutter_bill_split/models/subbill.dart';
 
 class SplitScreen extends StatefulWidget {
   Bill mybill;
@@ -15,9 +17,7 @@ List<Widget> listOfEntries = [];
 class _SplitScreenState extends State<SplitScreen> {
   String hintText = '';
   String hintTitle = 'title';
-  int _quality = 1;
-  int _subsum = 0;
-  Entry _currentEntry = Entry('', 0, 0);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,6 +39,13 @@ class _SplitScreenState extends State<SplitScreen> {
                 onChanged: (val) {
                   setState(() {
                     hintText = val.toString();
+                    var _currentid = 0;
+                    dummy_members.asMap().forEach((key, value) {
+                      if (val.toString() == value) {
+                        _currentid = key;
+                      }
+                    });
+                    ScreenData._currentSubbill.member.id = '$_currentid';
                     listOfEntries.add(EntryRow(widget.mybill));
                   });
                 },
@@ -59,7 +66,9 @@ class _SplitScreenState extends State<SplitScreen> {
             height: 55,
             color: Color.fromARGB(247, 196, 190, 129),
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                DUMMY_SUBBILLS.add(ScreenData._currentSubbill);
+              },
               child: Text('Submit!'),
             ),
           ),
@@ -70,21 +79,23 @@ class _SplitScreenState extends State<SplitScreen> {
   }
 }
 
+class ScreenData {
+  static SubBill _currentSubbill = SubBill(
+      createdTime: DateTime.now(), entries: [], member: dummy_members[0]);
+}
+
 class EntryRow extends StatefulWidget {
   Bill mybill;
 
   EntryRow(this.mybill);
-  @override
+
   @override
   State<EntryRow> createState() => _EntryRowState();
 }
 
 class _EntryRowState extends State<EntryRow> {
-  List<Widget> _listOfEntries = [];
   String hintTitle = 'title';
   int _quality = 1;
-
-  int _subsum = 0;
   Entry _currentEntry = Entry('', 0, 0);
   @override
   Widget build(BuildContext context) {
@@ -103,17 +114,16 @@ class _EntryRowState extends State<EntryRow> {
               _currentEntry = widget.mybill.entries
                   .where((element) => element.title == val)
                   .first;
-              print('${_currentEntry.price}');
               hintTitle = val.toString();
             });
           },
         ),
         InkWell(
             child: Container(
-              child: Text('-'),
+              child: const Text('-'),
               color: Colors.red[200],
-              padding: EdgeInsets.all(4),
-              margin: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(4),
+              margin: const EdgeInsets.all(8),
             ),
             onTap: () {
               setState(() {
@@ -125,8 +135,8 @@ class _EntryRowState extends State<EntryRow> {
           child: Container(
             child: Text('+'),
             color: Colors.blue[200],
-            padding: EdgeInsets.all(4),
-            margin: EdgeInsets.all(8),
+            padding: const EdgeInsets.all(4),
+            margin: const EdgeInsets.all(8),
           ),
           onTap: () {
             setState(() {
@@ -135,14 +145,15 @@ class _EntryRowState extends State<EntryRow> {
           },
         ),
         Text('${_currentEntry.price}'),
-        SizedBox(width: 16),
+        const SizedBox(width: 16),
         Text('${_currentEntry.price * _quality}'),
         TextButton(
           onPressed: () {
             listOfEntries.add(EntryRow(widget.mybill));
+            ScreenData._currentSubbill.entries.add(_currentEntry);
             setState(() {});
           },
-          child: Text('GO'),
+          child: const Text('SAVE'),
         ),
       ],
     );
