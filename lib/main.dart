@@ -3,7 +3,12 @@ import 'package:flutter_bill_split/screens/bill_history_screen.dart';
 
 import 'screens/bill_history_screen.dart';
 
-void main() {
+import 'package:hive_flutter/adapters.dart';
+import 'package:provider/provider.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+
+void main() async {
+  await Hive.initFlutter();
   runApp(const MyApp());
 }
 
